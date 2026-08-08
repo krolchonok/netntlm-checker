@@ -40,11 +40,12 @@ function renderResult(result) {
   const cls = result.match ? 'ok' : 'bad';
   const icon = result.match ? ICON_CHECK : ICON_CROSS;
   const headline = result.match ? 'Пароль подходит' : 'Пароль не подходит';
+  const who = result.username || result.domain ? ` &middot; ${escapeHtml(result.username)}\\${escapeHtml(result.domain)}` : '';
   return `<div class="result show ${cls}">
     <span class="result-icon">${icon}</span>
     <span class="result-text">
       <span class="headline">${headline}</span>
-      <span class="detail result-meta">${escapeHtml(result.variant)} &middot; ${escapeHtml(result.username)}\\${escapeHtml(result.domain)}</span>
+      <span class="detail result-meta">${escapeHtml(result.variant)}${who}</span>
     </span>
   </div>`;
 }
@@ -186,7 +187,7 @@ const PAGE = (result, hashValue, passwordValue) => `<!doctype html>
         <div class="field">
           <label for="hash">Хеш</label>
           <textarea id="hash" name="hash" placeholder="user::domain:challenge:proof:blob" spellcheck="false" required>${escapeHtml(hashValue ?? '')}</textarea>
-          <span class="hint">v1: user::domain:LMresp:NTresp:challenge &middot; v2: user::domain:challenge:proof:blob</span>
+          <span class="hint">v1: user::domain:LMresp:NTresp:challenge (или просто NTresp, 48 hex) &middot; v2: user::domain:challenge:proof:blob</span>
         </div>
 
         <div class="field">
