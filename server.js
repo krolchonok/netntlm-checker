@@ -56,6 +56,17 @@ const PAGE = (result, hashValue, passwordValue) => `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NetNTLM Checker</title>
+<meta name="description" content="Локальная проверка пароля по перехваченному NetNTLMv1 или NetNTLMv2 хешу — расчёт выполняется на сервере, ничего не отправляется наружу.">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NetNTLM Checker">
+<meta property="og:description" content="Локальная проверка пароля по перехваченному NetNTLMv1 или NetNTLMv2 хешу.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NetNTLM Checker">
+<meta name="twitter:description" content="Локальная проверка пароля по перехваченному NetNTLMv1 или NetNTLMv2 хешу.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHJlY3QgeD0iNSIgeT0iMTEiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMCIgcng9IjMiIGZpbGw9IiMyMmM1NWUiLz48cGF0aCBkPSJNOCAxMVY4YTQgNCAwIDAgMSA4IDB2MyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjJjNTVlIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+">
+<link rel="mask-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHJlY3QgeD0iNSIgeT0iMTEiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMCIgcng9IjMiLz48cGF0aCBkPSJNOCAxMVY4YTQgNCAwIDAgMSA4IDB2MyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+" color="#22c55e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
