@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Local NetNTLMv1/v2 (hashcat mode 5500/5600) password verifier",
+  "license": "MIT",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
