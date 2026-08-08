@@ -3,16 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NetNTLM Checker (offline)</title>
-<meta name="description" content="Автономная проверка пароля по перехваченному NetNTLMv1 или NetNTLMv2 хешу — весь расчёт идёт прямо в этой вкладке, без сети.">
+<title>NetNTLM Checker</title>
+<meta name="description" content="Проверка пароля по перехваченному NetNTLMv1 или NetNTLMv2 хешу — весь расчёт идёт прямо в браузере, без сервера и без сети.">
 <meta name="theme-color" content="#0a0a0a">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
-<meta property="og:title" content="NetNTLM Checker (offline)">
-<meta property="og:description" content="Автономная проверка пароля по перехваченному NetNTLMv1 или NetNTLMv2 хешу, без сети.">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NetNTLM Checker (offline)">
-<meta name="twitter:description" content="Автономная проверка пароля по перехваченному NetNTLMv1 или NetNTLMv2 хешу, без сети.">
+<meta property="og:site_name" content="NetNTLM Checker">
+<meta property="og:title" content="NetNTLM Checker">
+<meta property="og:description" content="Проверка пароля по перехваченному NetNTLMv1 или NetNTLMv2 хешу — локально, без сети.">
+<meta property="og:image" content="og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NetNTLM Checker">
+<meta name="twitter:description" content="Проверка пароля по перехваченному NetNTLMv1 или NetNTLMv2 хешу — локально, без сети.">
+<meta name="twitter:image" content="og.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHJlY3QgeD0iNSIgeT0iMTEiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMCIgcng9IjMiIGZpbGw9IiMyMmM1NWUiLz48cGF0aCBkPSJNOCAxMVY4YTQgNCAwIDAgMSA4IDB2MyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjJjNTVlIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+">
 <link rel="mask-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHJlY3QgeD0iNSIgeT0iMTEiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMCIgcng9IjMiLz48cGF0aCBkPSJNOCAxMVY4YTQgNCAwIDAgMSA4IDB2MyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+" color="#22c55e">
 <style>
@@ -49,10 +54,20 @@
   }
   main { width: 100%; max-width: 560px; }
 
+  .header-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
   .eyebrow {
     font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--text-faint); margin-bottom: 12px;
+    color: var(--text-faint); margin: 0;
   }
+  .gh-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border);
+    color: var(--text-muted); text-decoration: none; font-size: 12.5px; font-weight: 500;
+    transition: border-color 150ms, color 150ms;
+  }
+  .gh-badge:hover { border-color: var(--accent); color: var(--accent); }
+  .gh-badge:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
+  .gh-badge svg { width: 14px; height: 14px; flex-shrink: 0; }
   h1 { font-size: 27px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 8px; }
   .lede { color: var(--text-muted); font-size: 15.5px; line-height: 1.6; margin: 0 0 32px; max-width: 46ch; }
 
@@ -134,7 +149,13 @@
 </head>
 <body>
   <main>
-    <div class="eyebrow">NetNTLM Checker &middot; offline</div>
+    <div class="header-row">
+      <div class="eyebrow">NetNTLM Checker &middot; offline</div>
+      <a class="gh-badge" href="https://github.com/krolchonok/netntlm-checker" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.2a1 1 0 0 1 .95.68l1.7 4.98 5.28.06a1 1 0 0 1 .58 1.8l-4.23 3.2 1.56 5.05a1 1 0 0 1-1.53 1.1L10 14.9l-4.31 3.17a1 1 0 0 1-1.53-1.1l1.56-5.05-4.23-3.2a1 1 0 0 1 .58-1.8l5.28-.06 1.7-4.98A1 1 0 0 1 10 1.2z"/></svg>
+        <span>GitHub</span>
+      </a>
+    </div>
     <h1>Проверка пароля по хешу</h1>
     <p class="lede">Вставьте перехваченный NetNTLMv1 или NetNTLMv2 хеш и предполагаемый пароль — весь расчёт идёт прямо в этой вкладке, без сети.</p>
 
